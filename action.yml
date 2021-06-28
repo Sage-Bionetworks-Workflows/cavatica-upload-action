@@ -1,0 +1,27 @@
+name: "CAVATICA upload"
+branding:
+  icon: 'upload-cloud'
+  color: 'blue'
+description: "Upload files into CAVATICA"
+
+inputs:
+  api_endpoint:
+    description: "Seven Bridges API endpoint"
+    default: "https://cavatica-api.sbgenomics.com/v2"
+    required: false
+
+  auth_token:
+    description: "Seven Bridges authentication token"
+    required: true
+
+  project_name:
+    description: "Name of project on CAVATICA"
+    required: true
+
+  file_path:
+    description: "Path of file to upload"
+    required: true
+
+runs:
+  using: "docker"
+  image: "Dockerfile"

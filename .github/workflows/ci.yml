@@ -1,0 +1,21 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  cavatica_upload:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: synapse api login
+      uses: ./
+      with:
+        auth_token: ${{ secrets.AUTH_TOKEN }}
+        project_name: Test
+        file_path: README.md
+
+
