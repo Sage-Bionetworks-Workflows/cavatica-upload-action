@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
-    - name: synapse api login
+    - name: cavatica file upload
       uses: ./
       with:
         auth_token: ${{ secrets.AUTH_TOKEN }}
