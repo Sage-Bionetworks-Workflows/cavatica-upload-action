@@ -22,9 +22,13 @@ def get_or_create_folder(api: sbg.Api, name: str, project_id: str = None,
     if query:
         folder = query[0]
     else:
+        print(name)
+        print(project_id)
+        print(parent_id)
         folder = api.files.create_folder(
             name=name, project=project_id, parent=parent_id
         )
+        print(name)
     return folder
 
 # TODO: Add folders / files to exclude
