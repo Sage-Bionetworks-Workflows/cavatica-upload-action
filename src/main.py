@@ -39,8 +39,9 @@ if os.path.isfile(path):
 else:
     # Create initial folder in project
     folder_name = os.path.basename(os.path.abspath(path))
+    folder_name = "cavatica-action"
     initial_folder = get_or_create_folder(
-        api=api, name="workspace",
+        api=api, name=folder_name,
         project_id=project[0].id
     )
     # Map full folder path to its id
