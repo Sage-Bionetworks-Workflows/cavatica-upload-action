@@ -18,8 +18,8 @@ inputs:
     description: "Name of project on CAVATICA"
     required: true
 
-  file_path:
-    description: "Path of file to upload"
+  path:
+    description: "Path of file or directory to upload"
     required: true
 
 runs:
