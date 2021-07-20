@@ -29,7 +29,7 @@ def get_or_create_folder(api: sbg.Api, name: str, project_id: str = None,
 
 
 if os.path.isfile(path):
-    api.files.upload(path=path, project=project[0].id)
+    api.files.upload(path=path, project=project[0].id, overwrite=True)
 else:
     upload_files = os.walk(path)
     # Create initial folder in project
