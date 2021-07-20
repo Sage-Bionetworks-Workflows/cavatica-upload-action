@@ -14,7 +14,7 @@ on:
     branches: master
 
 jobs:
-  upload:
+  upload_file:
     runs-on: ubuntu-latest
     steps:
     - name: upload file
@@ -22,5 +22,15 @@ jobs:
       with:
         auth_token: ${{ secrets.AUTH_TOKEN }}
         project_name: Test
-        file_path: README.md
+        path: README.md
+
+  upload_dir:
+    runs-on: ubuntu-latest
+    steps:
+    - name: upload file
+      uses: include-dcc/cavatica-upload-action@0.1
+      with:
+        auth_token: ${{ secrets.AUTH_TOKEN }}
+        project_name: Test
+        path: "./"
 ```

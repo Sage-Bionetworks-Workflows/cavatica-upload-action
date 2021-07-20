@@ -34,8 +34,11 @@ if os.path.isfile(path):
 else:
     # Create initial folder in project
     folder_name = os.path.basename(os.path.abspath(path))
-    initial_folder = get_or_create_folder(api=api, name=folder_name,
-                                  project_id=project[0].id)
+    print(folder_name)
+    initial_folder = get_or_create_folder(
+        api=api, name=folder_name,
+        project_id=project[0].id
+    )
     # Map full folder path to its id
     folder_ids = {os.path.abspath(path): initial_folder.id}
     upload_files = os.walk(path)
