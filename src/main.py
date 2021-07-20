@@ -28,15 +28,15 @@ def get_or_create_folder(api: sbg.Api, name: str, project_id: str = None,
     return folder
 
 # TODO: Add folders / files to exclude
+# TODO: Add in ability to specify folder to store files to
 # If a file is added, store the file
 if os.path.isfile(path):
     api.files.upload(path=path, project=project[0].id, overwrite=True)
 else:
     # Create initial folder in project
     folder_name = os.path.basename(os.path.abspath(path))
-    print(folder_name)
     initial_folder = get_or_create_folder(
-        api=api, name=folder_name,
+        api=api, name="workspace",
         project_id=project[0].id
     )
     # Map full folder path to its id
