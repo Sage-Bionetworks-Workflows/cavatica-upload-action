@@ -23,35 +23,34 @@ def get_or_create_folder(api: sbg.Api, name: str, project_id: str = None,
         folder = query[0]
     else:
         folder = api.files.create_folder(
-            name=folder_name, project=project_id, parent=parent_id
+            name=name, project=project_id, parent=parent_id
         )
     return folder
 
-
+# TODO: Add folders / files to exclude
+# If a file is added, store the file
 if os.path.isfile(path):
     api.files.upload(path=path, project=project[0].id, overwrite=True)
 else:
-    upload_files = os.walk(path)
     # Create initial folder in project
     folder_name = os.path.basename(os.path.abspath(path))
-    parent = get_or_create_folder(api=api, name=folder_name,
+    initial_folder = get_or_create_folder(api=api, name=folder_name,
                                   project_id=project[0].id)
     # Map full folder path to its id
-    folder_ids = {os.path.abspath(path): parent.id}
+    folder_ids = {os.path.abspath(path): initial_folder.id}
+    upload_files = os.walk(path)
     for dirpath, dirnames, filenames in upload_files:
         # Don't upload hidden folders
-        if os.path.basename(dirpath).startswith("."):
-            continue
         folder_path = os.path.abspath(dirpath)
         # Create all directories on CAVATICA
         for dirs in dirnames:
             parent = get_or_create_folder(
                 api=api, name=dirs, parent_id=folder_ids[folder_path]
             )
-            full_folder_path = os.path.abspath(dirs)
+            full_folder_path = os.path.join(folder_path, dirs)
             folder_ids[full_folder_path] = parent.id
         # upload all files
         for files in filenames:
-            api.files.upload(path=files,
+            api.files.upload(path=os.path.join(folder_path, files),
                              parent=folder_ids[folder_path],
                              overwrite=True)
