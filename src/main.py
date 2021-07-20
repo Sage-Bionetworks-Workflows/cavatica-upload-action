@@ -39,6 +39,9 @@ else:
     # Map full folder path to its id
     folder_ids = {os.path.abspath(path): parent.id}
     for dirpath, dirnames, filenames in upload_files:
+        # Don't upload hidden folders
+        if os.path.basename(dirpath).startswith("."):
+            continue
         folder_path = os.path.abspath(dirpath)
         # Create all directories on CAVATICA
         for dirs in dirnames:
