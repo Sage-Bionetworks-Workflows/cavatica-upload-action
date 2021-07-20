@@ -17,6 +17,7 @@ jobs:
   upload_file:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: upload file
       uses: include-dcc/cavatica-upload-action@0.1
       with:
@@ -27,6 +28,7 @@ jobs:
   upload_dir:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: upload file
       uses: include-dcc/cavatica-upload-action@0.1
       with:
