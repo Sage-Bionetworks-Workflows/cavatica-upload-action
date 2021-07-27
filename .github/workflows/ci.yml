@@ -38,5 +38,5 @@ jobs:
       with:
         auth_token: ${{ secrets.AUTH_TOKEN }}
         project_name: Test
-        folder_name: "Test Upload Action"
+        folder_name: "test_upload_action"
         path: ./

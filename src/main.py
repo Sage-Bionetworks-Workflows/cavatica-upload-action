@@ -34,7 +34,7 @@ if os.path.isfile(path):
     api.files.upload(path=path, project=project[0].id, overwrite=True)
 else:
     # Set folder name to "workspace" if folder name not specified
-    if folder_name is None:
+    if folder_name is None or folder_name == '':
         folder_name = os.path.basename(os.path.abspath(path))
     print(folder_name)
     # Create initial folder in project
