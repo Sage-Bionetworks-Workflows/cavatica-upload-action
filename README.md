@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: upload file
-      uses: include-dcc/cavatica-upload-action@0.1
+      uses: include-dcc/cavatica-upload-action@v0.0.3
       with:
         auth_token: ${{ secrets.AUTH_TOKEN }}
         project_name: Test
@@ -30,7 +30,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: upload file
-      uses: include-dcc/cavatica-upload-action@0.1
+      uses: include-dcc/cavatica-upload-action@v0.0.3
       with:
         auth_token: ${{ secrets.AUTH_TOKEN }}
         project_name: Test
