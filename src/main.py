@@ -22,13 +22,9 @@ def get_or_create_folder(api: sbg.Api, name: str, project_id: str = None,
     if query:
         folder = query[0]
     else:
-        print(name)
-        print(project_id)
-        print(parent_id)
         folder = api.files.create_folder(
             name=name, project=project_id, parent=parent_id
         )
-        print(name)
     return folder
 
 # TODO: Add folders / files to exclude
@@ -39,7 +35,6 @@ if os.path.isfile(path):
 else:
     # Create initial folder in project
     folder_name = os.path.basename(os.path.abspath(path))
-    folder_name = "cavatica-action"
     initial_folder = get_or_create_folder(
         api=api, name=folder_name,
         project_id=project[0].id
