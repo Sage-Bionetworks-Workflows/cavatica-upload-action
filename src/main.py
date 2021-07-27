@@ -36,6 +36,7 @@ else:
     # Set folder name to "workspace" if folder name not specified
     if folder_name is None:
         folder_name = os.path.basename(os.path.abspath(path))
+    print(folder_name)
     # Create initial folder in project
     initial_folder = get_or_create_folder(
         api=api, name=folder_name,
