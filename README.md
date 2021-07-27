@@ -34,5 +34,8 @@ jobs:
       with:
         auth_token: ${{ secrets.AUTH_TOKEN }}
         project_name: Test
+        folder_name: test_space
         path: "./"
 ```
+
+* `folder_name` can be specified but it must be a-z, A-Z, 0-9, and special characters (_), (-), and (.). Names can't be longer than 255 characters. Spaces are not allowed.
