@@ -29,3 +29,14 @@ jobs:
         project_name: Test
         path: ./
 
+  cavatica_upload_folder_name:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: cavatica directory upload to diff folder
+      uses: ./
+      with:
+        auth_token: ${{ secrets.AUTH_TOKEN }}
+        project_name: Test
+        folder_name: "Test Upload Action"
+        path: ./
