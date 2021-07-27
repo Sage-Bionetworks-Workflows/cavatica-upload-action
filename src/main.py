@@ -6,6 +6,7 @@ import sevenbridges as sbg
 api_endpoint = os.getenv("INPUT_API_ENDPOINT")
 auth_token = os.getenv("INPUT_AUTH_TOKEN")
 project_name = os.getenv("INPUT_PROJECT_NAME")
+folder_name = os.getenv("INPUT_FOLDER_NAME")
 path = os.getenv("INPUT_PATH")
 
 api = sbg.Api(url=api_endpoint, token=auth_token)
@@ -28,13 +29,14 @@ def get_or_create_folder(api: sbg.Api, name: str, project_id: str = None,
     return folder
 
 # TODO: Add folders / files to exclude
-# TODO: Add in ability to specify folder to store files to
 # If a file is added, store the file
 if os.path.isfile(path):
     api.files.upload(path=path, project=project[0].id, overwrite=True)
 else:
+    # Set folder name to "workspace" if folder name not specified
+    if folder_name is None:
+        folder_name = os.path.basename(os.path.abspath(path))
     # Create initial folder in project
-    folder_name = os.path.basename(os.path.abspath(path))
     initial_folder = get_or_create_folder(
         api=api, name=folder_name,
         project_id=project[0].id
